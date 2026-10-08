@@ -253,8 +253,9 @@ mlts_fit <- function(model,
   # initial data checks --------------------------------------------------
   ## any variables with zero variance in any of the clusters
   ids = unique(data[,id])
-  data.test <- data
+  data.test <- data[ts]
   data.test$ID = data[,id]
+  data.test <- data.test[complete.cases(data.test),]
   for(i in 1:length(ts)){
     for(j in 1:length(ids)){
      if(stats::var(data.test[data.test$ID == ids[j], ts[i]], na.rm = TRUE) == 0){
