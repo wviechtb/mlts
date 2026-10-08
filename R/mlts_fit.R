@@ -193,6 +193,10 @@ mlts_fit <- function(model,
     }
 
   # Some initial checks:
+
+  if (anyNA(data[,id]))
+    stop("No missing values allowed in the `id` variable.")
+
   # avoiding specification of "covariates"- and "outcomes"-arguments,
   # if variable names in the model-object match the variables names in data
   if(is.null(covariates) & infos$n_cov>1){
